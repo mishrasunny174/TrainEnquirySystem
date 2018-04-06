@@ -67,6 +67,7 @@ public class GUI {
 		
 		//configuring functionTabs and adding components to it
 		functionTabs.addTab("Running Status", new RunningStatusTab());
+		functionTabs.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
 		
 		//configuring main panel and adding components to it
 		panel.setLayout(new GridBagLayout());
@@ -75,6 +76,11 @@ public class GUI {
 		panelGbc.gridy = 0;
 		panelGbc.weighty=0.10;
 		panel.add(headpanel,panelGbc);
+		panelGbc.fill = GridBagConstraints.BOTH;
+		panelGbc.gridx=0;
+		panelGbc.gridy=1;
+		panelGbc.weighty=0.90;
+		panel.add(functionTabs,panelGbc);
 		
 		//configuring and adding main panel to frame
 		panel.setBackground(Color.WHITE);
