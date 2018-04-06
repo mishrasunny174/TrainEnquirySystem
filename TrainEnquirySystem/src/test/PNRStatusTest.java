@@ -3,7 +3,7 @@ package test;
 import api.PNRStatus;
 import data.PNRStatusData;
 
-public class LiveRunningStatusTest {
+public class PNRStatusTest {
 
 	public static void main(String[] args) throws Exception {
 		PNRStatusData data = PNRStatus.getPNRStatus("2344404403", "jlwle3i10u");
