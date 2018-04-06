@@ -1,14 +1,17 @@
 package gui;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
 
-public class RunningStatusTab extends JPanel {
-	private static final long serialVersionUID = 1L;
+public class RunningStatusTab{
+	
+	private JPanel panel = null;
 	
 	public RunningStatusTab() {
-		setBackground(Color.WHITE);
+		
+	}
+	
+	public JPanel getPanel() {
+		return panel;
 	}
 
 }

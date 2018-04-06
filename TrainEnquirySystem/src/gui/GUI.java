@@ -43,6 +43,7 @@ public class GUI {
 		frame.setLayout(new GridLayout(1, 1));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setIconImage(new ImageIcon("res\\icon.png").getImage());
 		
 		//configuring and adding components to head panel
 		headpanel.setLayout(new GridBagLayout());
@@ -66,8 +67,8 @@ public class GUI {
 		headpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		//configuring functionTabs and adding components to it
-		functionTabs.addTab("Running Status", new RunningStatusTab());
 		functionTabs.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
+		functionTabs.addTab("Running Status",new RunningStatusTab().getPanel());
 		
 		//configuring main panel and adding components to it
 		panel.setLayout(new GridBagLayout());
