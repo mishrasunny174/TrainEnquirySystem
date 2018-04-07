@@ -23,7 +23,7 @@ public class ErrorDialogBox {
 		errorDialog.setTitle("ERROR");
 		errorDialog.setSize(new Dimension(400, 400));
 		errorDialog.setLayout(new GridLayout(2, 1));
-		errorDialog.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+		errorDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		
 		errorLabel = new JLabel(message);
 		errorLabel.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
@@ -35,7 +35,6 @@ public class ErrorDialogBox {
 		});
 		buttonPanel.add(ok);
 		errorDialog.add(buttonPanel);
-		
 	}
 	
 	public void show() {
