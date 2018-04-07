@@ -2,12 +2,14 @@ package gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import data.LiveRunningData;
 
 public class RunningStatusTab {
 
@@ -18,11 +20,15 @@ public class RunningStatusTab {
 	private JTextField dateInput = null;
 	private JButton search = null;
 	private JPanel searchPanel = null;
+	private String apiKey = null;
+	private LiveRunningData data = null;
+	private JComboBox<String> stationList = null;
 
-	public RunningStatusTab() {
+	public RunningStatusTab(String apiKey) {
+		this.apiKey = apiKey;
 		panel = new JPanel();
-		
-		//configuring components of searchPanel and adding them to search panel
+
+		// configuring components of searchPanel and adding them to search panel
 		trainNumber = new JLabel("Train Number: ");
 		trainNumberInput = new JTextField(10);
 		searchPanel = new JPanel();
@@ -31,29 +37,44 @@ public class RunningStatusTab {
 		dateInput = new JTextField(10);
 		search = new JButton("Search");
 		GridBagConstraints searchPanelGbc = new GridBagConstraints();
-		searchPanelGbc.gridy=0;
+		searchPanelGbc.gridy = 0;
 		searchPanelGbc.gridx = 0;
-		searchPanelGbc.gridwidth=3;
-		searchPanelGbc.fill=GridBagConstraints.HORIZONTAL;
-		searchPanel.add(trainNumber,searchPanelGbc);
-		searchPanelGbc.gridx=4;
-		searchPanel.add(trainNumberInput,searchPanelGbc);
+		searchPanelGbc.gridwidth = 3;
+		searchPanelGbc.fill = GridBagConstraints.HORIZONTAL;
+		searchPanel.add(trainNumber, searchPanelGbc);
+		searchPanelGbc.gridx = 4;
+		searchPanel.add(trainNumberInput, searchPanelGbc);
 		searchPanel.add(date);
 		searchPanel.add(dateInput);
 		searchPanel.add(search);
-		
-		//configuring panel components and adding them to panel
+
+		// configuring panel components and adding them to panel
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints panelGbc = new GridBagConstraints();
-		panelGbc.gridx=0;
-		panelGbc.gridy=0;
-		panelGbc.fill=GridBagConstraints.HORIZONTAL;
-		panelGbc.weightx=1;
-		panel.add(searchPanel,panelGbc);
+		panelGbc.gridx = 0;
+		panelGbc.gridy = 0;
+		panelGbc.fill = GridBagConstraints.HORIZONTAL;
+		panelGbc.weightx = 1;
+		panel.add(searchPanel, panelGbc);
 	}
 
 	public JPanel getPanel() {
 		return panel;
 	}
 
+	public String getTrain() {
+		return trainNumber.getText();
+	}
+	
+	public String getDate() {
+		return date.getText();
+	}
+
+	public String getApiKey() {
+		return apiKey;
+	}
+	
+	public void setLiveRunningStatusData(LiveRunningData data) {
+		this.data = data;
+	}
 }

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -13,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import data.ApiKey;
 
 public class GUI {
 
@@ -68,7 +71,11 @@ public class GUI {
 		
 		//configuring functionTabs and adding components to it
 		functionTabs.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
-		functionTabs.addTab("Running Status",new RunningStatusTab().getPanel());
+		try {
+			functionTabs.addTab("Running Status",new RunningStatusTab(new ApiKey().getApiKey()).getPanel());
+		} catch (IOException e) {
+			System.err.println("[Debug] unable to read api file");
+		}
 		functionTabs.addTab("Train Between Stations", new TrainBetweenStationsTab().getPanel());
 		
 		//configuring main panel and adding components to it
