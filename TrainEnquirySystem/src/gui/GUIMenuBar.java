@@ -9,19 +9,19 @@ import javax.swing.JMenuItem;
 public class GUIMenuBar {
 	
 	private JMenuBar menuBar = null;
-	private JMenu file;
-	private JMenu about;
+	private JMenu file = null;
+	private JMenu help = null;
 	private JMenuItem setApiKey = null;
 	private JMenuItem exit = null;
-	
+	private JMenuItem aboutUs = null;
 	public GUIMenuBar() {
 		menuBar = new JMenuBar();
 		file = new JMenu("File");
 		file.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
-		about = new JMenu("About Us");
-		about.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
+		help = new JMenu("Help");
+		help.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
 		menuBar.add(file);
-		menuBar.add(about);
+		menuBar.add(help);
 		setApiKey = new JMenuItem("Change Api Key");
 		setApiKey.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
 		exit = new JMenuItem("Exit");
@@ -32,8 +32,14 @@ public class GUIMenuBar {
 		setApiKey.addActionListener((ae)->{
 			new ChangeApiDialog().show();
 		});
+		aboutUs = new JMenuItem("About Us");
+		aboutUs.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
+		help.add(aboutUs);
 		file.add(setApiKey);
 		file.add(exit);
+		aboutUs.addActionListener((ae) -> {
+			new AboutDialog().show();
+		});
 	}
 	
 	public JMenuBar getMenuBar() {

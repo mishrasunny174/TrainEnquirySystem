@@ -254,7 +254,10 @@ public class FairEnquiryDialog {
 		dateArea.setText(date);
 		quotaArea.setText(data.getQuota().getCode());
 		fareArea.setText(data.getFare() + "");
-
+		//adding listener to ok button
+		ok.addActionListener((ae) -> {
+			fareDialog.setVisible(false);
+		});
 	}
 
 	public void show() {
