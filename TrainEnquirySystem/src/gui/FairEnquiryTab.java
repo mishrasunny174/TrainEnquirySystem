@@ -14,6 +14,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import listeners.FairEnquiryButtonListener;
+
 public class FairEnquiryTab {
 	private JFrame parent;
 	private JPanel panel;
@@ -272,6 +274,9 @@ public class FairEnquiryTab {
 		panelGbc.fill=0;
 		panelGbc.weighty=0.20;
 		panelGbc.gridy++;
+		
+		//adding status button listener
+		statusButton.addActionListener(new FairEnquiryButtonListener(this));
 
 	}
 
@@ -289,6 +294,34 @@ public class FairEnquiryTab {
 
 	public String getApikey() {
 		return apikey;
+	}
+
+	public String getAge() {
+		return ageText.getText();
+	}
+
+	public String getSource() {
+		return sourceText.getText();
+	}
+
+	public String getDest() {
+		return destText.getText();
+	}
+
+	public String getTrain() {
+		return "";
+	}
+
+	public String getQuota() {
+		return dateText.getText();
+	}
+
+	public String getClassCode() {
+		return classText.getText();
+	}
+
+	public String getDate() {
+		return dateText.getText();
 	}
 
 }

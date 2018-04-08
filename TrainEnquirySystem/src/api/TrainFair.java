@@ -15,7 +15,10 @@ import data.TrainFairEnquiryData;
 
 public class TrainFair {
 	public static TrainFairEnquiryData getFairData(String train, String from, String to, String age, String classCode,
-			String quota, String date, String apiKey) throws UnableToConnectToServerException {
+			String quota, String date, String apiKey) throws UnableToConnectToServerException, EmptyArgumentsException {
+		
+		if(train.equals("")||from.equals("")||to.equals("")||date.equals("")||classCode.equals("")||quota.equals("")||age.equals(""))
+			throw new EmptyArgumentsException("Input Fields are empty");
 		
 		String urlString = "https://api.railwayapi.com/v2/fare/train/"+train+"/source/"+from+"/dest/"+to+"/age/"+age+"/"
 				+ "pref/"+classCode+"/quota/"+quota+"/date/"+date+"/apikey/"+apiKey+"/";

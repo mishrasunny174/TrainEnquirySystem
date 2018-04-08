@@ -1,4 +1,4 @@
-package gui;
+package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,9 @@ import api.EmptyArgumentsException;
 import api.SeatAvailabilty;
 import api.UnableToConnectToServerException;
 import data.SeatAvailabilityData;
+import gui.ErrorDialogBox;
+import gui.SeatAvailabiltyDialog;
+import gui.SeatAvailabiltyTab;
 
 public class SeatAvailabiltyButtonListener implements ActionListener {
 	
