@@ -9,7 +9,7 @@ public class ApiKey {
 	private String apiKey;
 	
 	public ApiKey() throws IOException {
-		try(FileReader reader = new FileReader(new File("res//apikey.key"));
+		try(FileReader reader = new FileReader(new File("appdata\\apikey.key"));
 				BufferedReader buffereReader = new BufferedReader(reader)){
 			apiKey = buffereReader.readLine();
 		} 

@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,13 +24,13 @@ public class AboutDialog {
 	private JLabel priyaLabel=null;
 	private JButton ok = null;
 
-	public AboutDialog() {
+	public AboutDialog(JFrame frame) {
 
-		aboutDialog = new JDialog();
+		aboutDialog = new JDialog(frame);
 		headerPanel = new JPanel();
 
 		aboutDialog.setSize(420, 300);
-		aboutDialog.setTitle("about");
+		aboutDialog.setTitle("About us");
 		// aboutDialog.setResizable(false);
 		aboutDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		aboutDialog.setLayout(new GridBagLayout());

@@ -46,14 +46,14 @@ public class GUI {
 		frame.setLayout(new GridLayout(1, 1));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setIconImage(new ImageIcon("res\\icon.png").getImage());
-		frame.setJMenuBar(new GUIMenuBar().getMenuBar());
+		frame.setIconImage(new ImageIcon("appdata\\icon.png").getImage());
+		frame.setJMenuBar(new GUIMenuBar(frame).getMenuBar());
 		//configuring and adding components to head panel
 		headpanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		imageTrain.setIcon(new ImageIcon("res\\train.jpg"));
+		imageTrain.setIcon(new ImageIcon("appdata\\train.jpg"));
 		headpanel.add(imageTrain, gbc);
 		gbc.gridx = 1;
 		gbc.weighty = 2;
@@ -63,7 +63,7 @@ public class GUI {
 		headlabel.setBackground(Color.WHITE);
 		headpanel.add(headlabel, gbc);
 		gbc.gridx = 2;
-		imageRail.setIcon(new ImageIcon("res\\rail.jpg"));
+		imageRail.setIcon(new ImageIcon("appdata\\rail.jpg"));
 		imageRail.setBackground(Color.WHITE);
 		headpanel.add(imageRail, gbc);
 		headpanel.setBackground(Color.WHITE);

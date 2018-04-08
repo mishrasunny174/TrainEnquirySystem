@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -23,9 +24,10 @@ public class ChangeApiDialog {
 	private JTextField apiKey;
 	private JButton button;
 	private JPanel labelPanel;
-
-	public ChangeApiDialog() {
-		dialog = new JDialog();
+	private JFrame frame;
+	public ChangeApiDialog(JFrame frame) {
+		this.frame = frame;
+		dialog = new JDialog(frame);
 		dialog.setTitle("Change Api");
 		label = new JLabel("Enter API Key");
 		button = new JButton("Change");
@@ -52,9 +54,10 @@ public class ChangeApiDialog {
 		gbc.gridy++;
 		button.setFont(new Font(Font.SANS_SERIF,Font.BOLD,20));
 		button.addActionListener((ae)->{
-			try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File("res\\apikey.key"),false))){
+			try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File("appdata\\apikey.key"),false))){
 				if(!apiKey.getText().equals(""))
 					writer.write(apiKey.getText());
+				new ChangedSuccesfullyDialog(frame).show();
 				dialog.setVisible(false);
 			} catch (IOException e) {
 				System.err.println("[Debug] unable to open api key file");
