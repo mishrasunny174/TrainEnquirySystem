@@ -72,8 +72,11 @@ public class GUI {
 		//configuring functionTabs and adding components to it
 		functionTabs.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
 		try {
-			functionTabs.addTab("Running Status",new RunningStatusTab(frame,new ApiKey().getApiKey()).getPanel());
-			functionTabs.addTab("Train Between Stations", new TrainBetweenStationsTab(frame,new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("Live train running status",new RunningStatusTab(frame,new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("Train between stations", new TrainBetweenStationsTab(frame,new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("PNR status",new PnrStatusTab(frame,new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("Seat availabilty", new SeatAvailabiltyTab(frame, new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("Train fair enquiry", new FairEnquiryTab(frame, new ApiKey().getApiKey()).getPanel());
 		} catch (IOException e) {
 			System.err.println("[Debug] unable to read api file");
 		}

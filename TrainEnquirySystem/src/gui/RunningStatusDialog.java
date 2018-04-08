@@ -46,6 +46,7 @@ public class RunningStatusDialog {
 		stationDialog.setSize(420, 300);
 		stationDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		stationDialog.setLayout(new GridBagLayout());
+		stationDialog.setBackground(Color.WHITE);
 
 		// configuring status
 		GridBagConstraints stationPanelGbc = new GridBagConstraints();
@@ -53,7 +54,6 @@ public class RunningStatusDialog {
 		stationPanelGbc.gridy = 0;
 		stationPanelGbc.weighty = 0;
 		headerPanel = new JPanel();
-		headerPanel.setBackground(Color.WHITE);
 		headerLabel = new JLabel("Running Status");
 		headerLabel.setBackground(Color.WHITE);
 		headerLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 30));
@@ -69,6 +69,7 @@ public class RunningStatusDialog {
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(new GridBagLayout());
 		panel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		panel.setBackground(Color.WHITE);
 		stationDialog.add(panel, stationPanelGbc);
 
 		// adding ok button
@@ -273,6 +274,8 @@ public class RunningStatusDialog {
 		gbc.gridx = 2;
 		currentPositionData = new JTextArea(2, 20);
 		currentPositionData.setEditable(false);
+		currentPositionData.setLineWrap(true);
+		currentPositionData.setWrapStyleWord(true);
 		currentPositionData.setText(position);
 		panel.add(currentPositionData, gbc);
 

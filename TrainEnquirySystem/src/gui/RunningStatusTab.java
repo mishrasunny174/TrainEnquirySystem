@@ -1,9 +1,11 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,124 +22,164 @@ import listerners.ShowStatusButtonListenerRunningStatus;
 public class RunningStatusTab {
 
 	private JPanel panel = null;
-	private JPanel trainPanel = null;
 	private JLabel trainNumber = null;
 	private JTextField trainNumberInput = null;
-	private JPanel datePanel = null;
 	private JLabel date = null;
 	private JTextField dateInput = null;
 	private JButton search = null;
-	private JPanel searchPanel = null;
 	private JLabel stationLabel = null;
 	private JButton statusButton = null;
 	private JComboBox<String> stationSelector = null;
 	private String apikey = null;
 	private LiveRunningData data = null;
 	private JFrame parent;
-	
-	public RunningStatusTab(JFrame parent,String apikey) {
-		this.setParent(parent);
+
+	public RunningStatusTab(JFrame parent, String apikey) {
+		// panel configuration
+		this.parent = parent;
 		this.apikey = apikey;
 		panel = new JPanel();
-		trainPanel = new JPanel();
-		datePanel = new JPanel();
-		searchPanel = new JPanel();
 		stationSelector = new JComboBox<>();
 		panel.setLayout(new GridBagLayout());
+		panel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
+		// Grid Bag constraint to set layout of panel
 		GridBagConstraints panelGbc = new GridBagConstraints();
-
-		// train panel configuration
+		panelGbc.weightx=0.20; //constant for whole program
+		panelGbc.weighty=0.20;
+		
+		//font to be used for everything
 		Font trainfont = new Font(Font.SANS_SERIF, Font.BOLD, 20);
-		trainNumber = new JLabel("Train Number: ");
+
+		// train Number Label configuration
+		trainNumber = new JLabel("Train Number");
 		trainNumber.setFont(trainfont);
+		panelGbc.gridx=0;
+		panelGbc.gridy=0;
+		panel.add(trainNumber,panelGbc);
+		
+		//separator vertical
+		panelGbc.gridx++;
+		panelGbc.fill=GridBagConstraints.VERTICAL;
+		panelGbc.weightx=0.10;
+		panel.add(new JSeparator(SwingConstants.VERTICAL),panelGbc);
+		panelGbc.fill=0;
+		panelGbc.weightx=0.20;
+		
+		//train number input configuration
 		trainNumberInput = new JTextField(25);
 		trainNumberInput.setFont(trainfont);
-		trainPanel.add(trainNumber);
-		trainPanel.add(trainNumberInput);
-
-		// adding train panel to main panel
-		panelGbc.gridx = 0;
-		panelGbc.gridy = 0;
-		panelGbc.fill = GridBagConstraints.HORIZONTAL;
-		panelGbc.weightx = 0.10;
-		panelGbc.weighty = 0.10;
-		panel.add(trainPanel, panelGbc);
-
-		// date panel configuration
-		date = new JLabel("Date: ");
-		dateInput = new JTextField(25);
-		datePanel.add(date);
+		panelGbc.gridx++;
+		panel.add(trainNumberInput,panelGbc);
+		
+		//separator horizontal
+		panelGbc.gridy++;
+		panelGbc.gridx=0;
+		panelGbc.gridwidth=3;
+		panelGbc.weighty=0.0;
+		panelGbc.fill=GridBagConstraints.HORIZONTAL;
+		panel.add(new JSeparator(SwingConstants.HORIZONTAL),panelGbc);
+		panelGbc.gridwidth=1;
+		panelGbc.fill=0;
+		panelGbc.weighty=0.20;
+		panelGbc.gridy++;
+		
+		// date label configuration
+		date = new JLabel("Date");
 		date.setFont(trainfont);
-		datePanel.add(dateInput);
+		panelGbc.gridx=0;
+		panel.add(date,panelGbc);
+		
+		//separator vertical
+		panelGbc.gridx++;
+		panelGbc.fill=GridBagConstraints.VERTICAL;
+		panelGbc.weightx=0.10;
+		panel.add(new JSeparator(SwingConstants.VERTICAL),panelGbc);
+		panelGbc.fill=0;
+		panelGbc.weightx=0.20;
+		
+		//date input configuration
+		dateInput = new JTextField(25);
 		dateInput.setFont(trainfont);
+		panelGbc.gridx++;
+		panel.add(dateInput,panelGbc);
+		
+		//separator horizontal
+		panelGbc.gridy++;
+		panelGbc.gridx=0;
+		panelGbc.gridwidth=3;
+		panelGbc.weighty=0.0;
+		panelGbc.fill=GridBagConstraints.HORIZONTAL;
+		panel.add(new JSeparator(SwingConstants.HORIZONTAL),panelGbc);
+		panelGbc.gridwidth=1;
+		panelGbc.fill=0;
+		panelGbc.weighty=0.20;
+		panelGbc.gridy++;
 
-		// adding date panel to panel
-		panelGbc.gridx = 2;
-		panelGbc.weightx = 0.10;
-		panelGbc.weighty = 0.10;
-		panel.add(datePanel, panelGbc);
-
-		// search panel configuration
-		searchPanel.setLayout(new GridBagLayout());
-		GridBagConstraints searchPanelGbc = new GridBagConstraints();
-		searchPanelGbc.gridx = 0;
-		searchPanelGbc.gridy = 0;
-		searchPanelGbc.fill = GridBagConstraints.HORIZONTAL;
-		searchPanelGbc.gridwidth = 1;
-		searchPanelGbc.weightx = 1;
-		search = new JButton("Search");
+		// Search Button Configuration
+		panelGbc.gridx=0;
+		panelGbc.gridwidth=3;
+		panelGbc.fill=GridBagConstraints.HORIZONTAL;
+		search = new JButton("Search Trains");
 		search.addActionListener(new LiveStatusSearchButtonListener(this));
 		search.setFont(trainfont);
-		searchPanel.add(search, searchPanelGbc);
+		panel.add(search,panelGbc);
+		panelGbc.gridwidth=1;
+		panelGbc.fill=0;
+		
+		//separator horizontal
+		panelGbc.gridy++;
+		panelGbc.gridx=0;
+		panelGbc.gridwidth=3;
+		panelGbc.weighty=0.0;
+		panelGbc.fill=GridBagConstraints.HORIZONTAL;
+		panel.add(new JSeparator(SwingConstants.HORIZONTAL),panelGbc);
+		panelGbc.gridwidth=1;
+		panelGbc.fill=0;
+		panelGbc.weighty=0.20;
+		panelGbc.gridy++;
 
-		// adding search panel
-		panelGbc.gridx = 4;
-		panelGbc.fill = 0;
-		panelGbc.gridwidth = 1;
-		panelGbc.weightx = 0.30;
-		panelGbc.weighty = 0.10;
-		panel.add(searchPanel, panelGbc);
-
-		// adding separator
-		panelGbc.gridx = 0;
-		panelGbc.gridy = 1;
-		panelGbc.weighty = 0.05;
-		panelGbc.gridwidth = 5;
-		panelGbc.fill = GridBagConstraints.HORIZONTAL;
-		panel.add(new JSeparator(SwingConstants.HORIZONTAL), panelGbc);
-
+		// station selection label configuration
 		stationLabel = new JLabel("Select Station:");
 		stationLabel.setFont(trainfont);
-		panelGbc.gridx = 0;
-		panelGbc.gridy = 2;
-		panelGbc.weightx = 0;
-		panelGbc.weighty = 0;
-		panelGbc.gridwidth = 1;
-		panelGbc.fill = 0;
-		panel.add(stationLabel, panelGbc);
+		panelGbc.gridx=0;
+		panel.add(stationLabel,panelGbc);
 
+		//separator vertical
+		panelGbc.gridx++;
+		panelGbc.fill=GridBagConstraints.VERTICAL;
+		panelGbc.weightx=0.10;
+		panel.add(new JSeparator(SwingConstants.VERTICAL),panelGbc);
+		panelGbc.fill=0;
+		panelGbc.weightx=0.20;
+		
+		// station selector configuration
 		stationSelector.addItem("Please Search A Train First");
 		stationSelector.setFont(trainfont);
-		panelGbc.gridx = 1;
-		panelGbc.gridy = 2;
-		panelGbc.weightx = 0.80;
-		panelGbc.weighty = 0.10;
-		panelGbc.gridwidth = 3;
-		panelGbc.fill = GridBagConstraints.HORIZONTAL;
-		panel.add(stationSelector, panelGbc);
+		panelGbc.gridx++;
+		panel.add(stationSelector,panelGbc);
+		
+		//separator horizontal
+		panelGbc.gridy++;
+		panelGbc.gridx=0;
+		panelGbc.gridwidth=3;
+		panelGbc.weighty=0.0;
+		panelGbc.fill=GridBagConstraints.HORIZONTAL;
+		panel.add(new JSeparator(SwingConstants.HORIZONTAL),panelGbc);
+		panelGbc.gridwidth=1;
+		panelGbc.fill=0;
+		panelGbc.weighty=0.20;
+		panelGbc.gridy++;
 
+		// show status button configuration
 		statusButton = new JButton("Show Status");
 		statusButton.setFont(trainfont);
 		statusButton.setEnabled(false);
-		panelGbc.gridx = 4;
-		panelGbc.gridy = 2;
-		panelGbc.weightx = 0.10;
-		panelGbc.weighty = 0.10;
-		panelGbc.gridwidth = 1;
-		panelGbc.fill = 0;
 		statusButton.addActionListener(new ShowStatusButtonListenerRunningStatus(this));
-		panel.add(statusButton, panelGbc);
+		panelGbc.gridx=0;
+		panelGbc.gridwidth=3;
+		panelGbc.fill=GridBagConstraints.HORIZONTAL;
+		panel.add(statusButton,panelGbc);
 
 	}
 
@@ -164,13 +206,13 @@ public class RunningStatusTab {
 	public JComboBox<String> getStationSelector() {
 		return stationSelector;
 	}
-	
+
 	public LiveRunningData getData() {
 		return data;
 	}
 
 	public void activateGetStatusButton() {
-		statusButton.setEnabled(true);	
+		statusButton.setEnabled(true);
 	}
 
 	public JFrame getParent() {
