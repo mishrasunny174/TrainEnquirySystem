@@ -5,10 +5,12 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -17,7 +19,7 @@ import data.Days;
 import data.Train;
 
 public class TrainDetailsDialog {
-	private JDialog dialog;
+	private JDialog dialogMain;
 	private JLabel name;
 	private JTextArea nameData;
 	private JLabel code;
@@ -36,10 +38,12 @@ public class TrainDetailsDialog {
 	private JTextArea runningDaysData;
 	private JButton okay;
 	private Train train;
+	private JPanel dialog;
 	
 	public TrainDetailsDialog(JFrame parent,Train train) {
-		this.dialog = new JDialog(parent,"Train Details");
+		this.dialogMain = new JDialog(parent,"Train Details");
 		this.train=train;
+		dialog = new JPanel();
 		name = new JLabel("Name");
 		nameData = new JTextArea(1,20);
 		nameData.setEditable(false);
@@ -69,10 +73,12 @@ public class TrainDetailsDialog {
 	
 	public void show() {
 		//configuring dialog
-		dialog.setSize(new Dimension(400,400));
-		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		dialogMain.setSize(new Dimension(400,400));
+		dialogMain.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		dialogMain.add(dialog);
 		dialog.setLayout(new GridBagLayout());
 		dialog.setBackground(Color.WHITE);
+		dialog.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		//will be default
@@ -322,12 +328,12 @@ public class TrainDetailsDialog {
 		gbc.gridx=0;
 		gbc.gridwidth=3;
 		okay.addActionListener((ae)->{
-			dialog.setVisible(false);
+			dialogMain.setVisible(false);
 		});
 		gbc.fill=GridBagConstraints.HORIZONTAL;
 		dialog.add(okay, gbc);
 		
 		//making dialog visible
-		dialog.setVisible(true);
+		dialogMain.setVisible(true);
 	}
 }
