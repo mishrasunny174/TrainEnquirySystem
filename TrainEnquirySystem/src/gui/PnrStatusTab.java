@@ -25,7 +25,7 @@ public class PnrStatusTab {
 		this.setParent(parent);
 		panel = new JPanel();
 		this.setApikey(apikey);
-		pnrLabel = new JLabel("Pnr Number : ");
+		pnrLabel = new JLabel("PNR Number : ");
 		pnrText = new JTextField(10);
 		statusButton = new JButton("Show Status");
 
