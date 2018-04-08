@@ -14,9 +14,9 @@ import gui.FairEnquiryTab;
 public class FairEnquiryButtonListener implements ActionListener {
 
 	private FairEnquiryTab tab;
-	
+
 	public FairEnquiryButtonListener(FairEnquiryTab tab) {
-		this.tab=tab;
+		this.tab = tab;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class FairEnquiryButtonListener implements ActionListener {
 					tab.getClassCode(), tab.getQuota(), tab.getDate(), tab.getApikey());
 			switch (data.getResponse_code()) {
 			case 200:
-				new FairEnquiryDialog(tab.getParent(),data,tab.getDate()).show();
+				new FairEnquiryDialog(tab.getParent(), data, tab.getDate()).show();
 			case 210:
 				new ErrorDialogBox(tab.getParent(), "Train doesn’t run on the date queried.").show();
 				break;
