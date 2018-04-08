@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -31,7 +32,8 @@ public class TrainBetweenStationsTab {
 	private JList<String> trainList = null;
 	private JLabel nameLabel=null;
 	private TrainBetweenStationsData data;
-
+	private JScrollPane trainListPane;
+	
 	public TrainBetweenStationsTab(JFrame parent, String apikey) {
 		this.parent=parent;
 		this.apikey=apikey;
@@ -178,7 +180,8 @@ public class TrainBetweenStationsTab {
 		String[] dataList = {"Please Search For Trains"};
 		trainList.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
  		trainList.setListData(dataList);
-		panel.add(trainList,panelGbc);
+ 		trainListPane = new JScrollPane(trainList);
+		panel.add(trainListPane,panelGbc);
 		
 	}
 
