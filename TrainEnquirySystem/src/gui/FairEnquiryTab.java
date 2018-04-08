@@ -337,7 +337,7 @@ public class FairEnquiryTab {
 	}
 
 	public String getQuota() {
-		return dateText.getText();
+		return quotaText.getText();
 	}
 
 	public String getClassCode() {

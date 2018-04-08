@@ -38,6 +38,7 @@ public class TrainFair {
 			}
 		} catch (MalformedURLException e) {
 			System.err.println("[Debug] " + e.getMessage());
+			throw new UnableToConnectToServerException("Unable to connect to server");
 		} catch (IOException e) {
 			throw new UnableToConnectToServerException("Unable to connect to server");
 		}

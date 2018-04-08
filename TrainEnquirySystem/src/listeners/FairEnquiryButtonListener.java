@@ -28,6 +28,7 @@ public class FairEnquiryButtonListener implements ActionListener {
 			switch (data.getResponse_code()) {
 			case 200:
 				new FairEnquiryDialog(tab.getParent(), data, tab.getDate()).show();
+				break;
 			case 210:
 				new ErrorDialogBox(tab.getParent(), "Train doesn’t run on the date queried.").show();
 				break;
