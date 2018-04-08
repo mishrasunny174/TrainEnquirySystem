@@ -14,6 +14,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import listeners.SeatAvailabiltyButtonListener;
+
 public class SeatAvailabiltyTab {
 	private JFrame parent;
 	private JPanel panel;

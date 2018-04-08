@@ -15,6 +15,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import data.TrainFairEnquiryData;
+
 public class FairEnquiryDialog {
 
 	private JDialog fareDialog = null;
@@ -37,7 +39,7 @@ public class FairEnquiryDialog {
 	private JTextArea fareArea = null;
 	private JButton ok = null;
 
-	public FairEnquiryDialog(JFrame parent) {
+	public FairEnquiryDialog(JFrame parent, TrainFairEnquiryData data,String date) {
 
 		fareDialog = new JDialog(parent);
 		fareDialog.setTitle("fare enquiry");
@@ -172,7 +174,7 @@ public class FairEnquiryDialog {
 		gbc.gridwidth = 3;
 		panel.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
 
-		// date and date area configuration
+		//date and date area configuration
 		gbc.gridx = 0;
 		gbc.gridy = 9;
 		gbc.weightx = 0.25;
@@ -243,6 +245,15 @@ public class FairEnquiryDialog {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth = 3;
 		panel.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
+		
+		//adding data
+		classArea.setText(data.getJourney_class().getCode());
+		trainArea.setText(data.getTrain().getName());
+		sourceArea.setText(data.getFrom_station().getName());
+		destArea.setText(data.getTo_station().getName());
+		dateArea.setText(date);
+		quotaArea.setText(data.getQuota().getCode());
+		fareArea.setText(data.getFare()+"");
 
 	}
 

@@ -4,15 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import api.EmptyArgumentsException;
-import api.SeatAvailabilty;
 import api.TrainFair;
 import api.UnableToConnectToServerException;
-import data.SeatAvailabilityData;
-import data.TrainBetweenStationsData;
 import data.TrainFairEnquiryData;
 import gui.ErrorDialogBox;
+import gui.FairEnquiryDialog;
 import gui.FairEnquiryTab;
-import gui.SeatAvailabiltyDialog;
 
 public class FairEnquiryButtonListener implements ActionListener {
 
@@ -30,7 +27,7 @@ public class FairEnquiryButtonListener implements ActionListener {
 					tab.getClassCode(), tab.getQuota(), tab.getDate(), tab.getApikey());
 			switch (data.getResponse_code()) {
 			case 200:
-				
+				new FairEnquiryDialog(tab.getParent(),data,tab.getDate()).show();
 			case 210:
 				new ErrorDialogBox(tab.getParent(), "Train doesn’t run on the date queried.").show();
 				break;
