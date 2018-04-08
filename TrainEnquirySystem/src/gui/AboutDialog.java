@@ -70,7 +70,7 @@ public class AboutDialog {
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weightx = 0.25;
-		versionLabel = new JLabel(" ( Version 1.0 ) ");
+		versionLabel = new JLabel(" ( Version 1.1 ) ");
 		versionLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
 		panel.add(versionLabel, gbc);
 

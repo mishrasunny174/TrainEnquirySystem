@@ -15,9 +15,16 @@ public class GUIMenuBar {
 	private JMenuItem setApiKey = null;
 	private JMenuItem exit = null;
 	private JMenuItem aboutUs = null;
+	private JMenuItem aboutApi = null;
+	
 	public GUIMenuBar(JFrame frame) {
 		menuBar = new JMenuBar();
 		file = new JMenu("File");
+		aboutApi = new JMenuItem("About API");
+		aboutApi.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
+		aboutApi.addActionListener((ae) -> {
+			new AboutApiDialog(frame).show();
+		});
 		file.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
 		help = new JMenu("Help");
 		help.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
@@ -35,6 +42,7 @@ public class GUIMenuBar {
 		});
 		aboutUs = new JMenuItem("About Us");
 		aboutUs.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
+		help.add(aboutApi);
 		help.add(aboutUs);
 		file.add(setApiKey);
 		file.add(exit);
