@@ -233,7 +233,7 @@ public class PnrStatusDialog {
 		gbc.weightx = 0.25;
 		gbc.fill = 0;
 		gbc.gridwidth = 1;
-		passengerlistLabel = new JLabel("Passengers Reservation Status");
+		passengerlistLabel = new JLabel("    Passengers Reservation Status");
 		passengerlistLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		panel.add(passengerlistLabel, gbc);
 		gbc.gridy = 14;

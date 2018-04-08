@@ -15,8 +15,11 @@ import data.SeatAvailabilityData;
 
 public class SeatAvailabilty {
 	public static SeatAvailabilityData getSeatAvailability(String train, String from, String to, String date,
-			String classCode, String quota, String apiKey) throws UnableToConnectToServerException {
+			String classCode, String quota, String apiKey) throws UnableToConnectToServerException, EmptyArgumentsException {
 
+		if(train.equals("")||from.equals("")||to.equals("")||date.equals("")||classCode.equals("")||quota.equals(""))
+			throw new EmptyArgumentsException("Input Fields are empty");
+		
 		String urlString = "https://api.railwayapi.com/v2/check-seat/train/"+train+"/source/"+from+"/dest/"+to
 				+ "/date/"+date+"/pref/"+classCode+"/quota/"+quota+"/apikey/"+apiKey+"/";
 

@@ -15,6 +15,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import data.SeatAvailabilityData;
+
 public class SeatAvailabiltyDialog {
 
 	private JDialog seatDialog = null;
@@ -37,7 +39,7 @@ public class SeatAvailabiltyDialog {
 	private JTextArea availabiltyArea = null;
 	private JButton ok = null;
 
-	public SeatAvailabiltyDialog(JFrame parent) {
+	public SeatAvailabiltyDialog(JFrame parent, SeatAvailabilityData data) {
 		
 		seatDialog = new JDialog(parent);
 		seatDialog.setTitle("seat availabilty");
@@ -244,6 +246,20 @@ public class SeatAvailabiltyDialog {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth = 3;
 		panel.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
+		
+		//adding data to fields
+		classArea.setText(data.getJourney_class().getCode());
+		trainArea.setText(data.getTrain().getName());
+		sourceArea.setText(data.getFrom_station().getName());
+		destArea.setText(data.getTo_station().getName());
+		quotaArea.setText(data.getQuota().getCode());
+		dateArea.setText(data.getAvailability()[0].getDate());
+		availabiltyArea.setText(data.getAvailability()[0].getStatus());
+		
+		//adding listener to ok button
+		ok.addActionListener((ae)->{
+			seatDialog.setVisible(false);
+		});
 
 	}
 
