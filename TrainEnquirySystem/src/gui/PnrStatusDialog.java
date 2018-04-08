@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -40,6 +41,7 @@ public class PnrStatusDialog {
 	private JTextArea reservationArea = null;
 	private JLabel passengerlistLabel = null;
 	private JList<String> passengerList = null;
+	private JScrollPane passengersListScrollPane;
 	private JButton ok = null;
 
 	public PnrStatusDialog(JFrame parent, PNRStatusData data) {
@@ -250,12 +252,8 @@ public class PnrStatusDialog {
 		gbc.gridwidth = 3;
 		gbc.gridheight = 1;
 		passengerList = new JList<>();
-		panel.add(passengerList, gbc);
-		gbc.gridy = 16;
-		gbc.gridx = 0;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.gridwidth = 3;
-		panel.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
+		passengersListScrollPane = new JScrollPane(passengerList);
+		panel.add(passengersListScrollPane, gbc);
 
 		classArea.setText(data.getJourney_class().getCode());
 		passengerArea.setText(data.getTotal_passengers() + "");
