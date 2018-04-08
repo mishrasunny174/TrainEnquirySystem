@@ -10,6 +10,7 @@ import data.LiveRunningData;
 import data.TrainRoute;
 import gui.ErrorDialogBox;
 import gui.RunningStatusTab;
+import gui.SearchingDialog;
 
 public class LiveStatusSearchButtonListener implements ActionListener {
 
