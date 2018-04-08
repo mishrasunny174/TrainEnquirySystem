@@ -55,6 +55,7 @@ public class ChangeApiDialog {
 			try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File("res\\apikey.key"),false))){
 				if(!apiKey.getText().equals(""))
 					writer.write(apiKey.getText());
+				dialog.setVisible(false);
 			} catch (IOException e) {
 				System.err.println("[Debug] unable to open api key file");
 			}
