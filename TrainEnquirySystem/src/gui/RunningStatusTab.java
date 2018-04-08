@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -100,8 +102,15 @@ public class RunningStatusTab {
 		
 		//date input configuration
 		dateInput = new JTextField(25);
+		dateInput.setText("DD-MM-YYYY");
 		dateInput.setFont(trainfont);
 		panelGbc.gridx++;
+		dateInput.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				dateInput.selectAll();
+			}
+		});
 		panel.add(dateInput,panelGbc);
 		
 		//separator horizontal

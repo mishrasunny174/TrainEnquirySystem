@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,9 +32,9 @@ public class SeatAvailabiltyTab {
 	private JLabel dateLabel;
 	private JTextField dateText;
 	private JLabel classLabel;
-	private JTextField classText;
+	private JComboBox<String> classText;
 	private JLabel quotaLabel;
-	private JTextField quotaText;
+	private JComboBox<String> quotaText;
 	private JButton statusButton;
 
 	public SeatAvailabiltyTab(JFrame parent, String apikey) {
@@ -46,10 +49,10 @@ public class SeatAvailabiltyTab {
 		destText = new JTextField(10);
 		dateLabel = new JLabel("Date : ");
 		dateText = new JTextField(10);
-		classLabel = new JLabel("Class Code : ");
-		classText = new JTextField(10);
+		classLabel = new JLabel("Journey Class : ");
+		classText = new JComboBox<>();
 		quotaLabel = new JLabel("Quota : ");
-		quotaText = new JTextField(10);
+		quotaText = new JComboBox<>();
 		statusButton = new JButton("Show Status");
 
 		panel.setLayout(new GridBagLayout());
@@ -137,7 +140,7 @@ public class SeatAvailabiltyTab {
 		panelGbc.fill = 0;
 		panelGbc.weightx = 0.20;
 
-		// dest input configuration    
+		// dest input configuration
 		destText.setFont(seatfont);
 		panelGbc.gridx++;
 		panel.add(destText, panelGbc);
@@ -170,6 +173,7 @@ public class SeatAvailabiltyTab {
 		// date input configuration
 		dateText.setFont(seatfont);
 		panelGbc.gridx++;
+		dateText.setText("DD-MM-YYYY");
 		panel.add(dateText, panelGbc);
 
 		// separator horizontal
@@ -200,6 +204,10 @@ public class SeatAvailabiltyTab {
 		// class input configuration
 		classText.setFont(seatfont);
 		panelGbc.gridx++;
+		String[] classes = {"1A","2A","3A","FC","CC","2L","2S"};
+		for(String clas : classes) {
+			classText.addItem(clas);
+		}
 		panel.add(classText, panelGbc);
 
 		// separator horizontal
@@ -230,6 +238,10 @@ public class SeatAvailabiltyTab {
 		// quota input configuration
 		quotaText.setFont(seatfont);
 		panelGbc.gridx++;
+		String[] qoutas = {"GN","LD","HO","DF","PH","FT","DP","TQ","PT","SS","HP","RE","GNRS","OS","PS","RC(RAC)","RS","YU","LB"};
+		for(String quota : qoutas) {
+			quotaText.addItem(quota);
+		}
 		panel.add(quotaText, panelGbc);
 
 		// separator horizontal
@@ -267,6 +279,14 @@ public class SeatAvailabiltyTab {
 
 		// adding listener to showStatus button
 		statusButton.addActionListener(new SeatAvailabiltyButtonListener(this));
+
+		// adding dateText mouse listener
+		dateText.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				dateText.selectAll();
+			}
+		});
 	}
 
 	public JFrame getParent() {
@@ -294,7 +314,7 @@ public class SeatAvailabiltyTab {
 	}
 
 	public String getClassCode() {
-		return classText.getText();
+		return classText.getItemAt(classText.getSelectedIndex());
 	}
 
 	public String getDate() {
@@ -306,7 +326,7 @@ public class SeatAvailabiltyTab {
 	}
 
 	public String getQuota() {
-		return quotaText.getText();
+		return quotaText.getItemAt(quotaText.getSelectedIndex());
 	}
 
 }

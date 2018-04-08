@@ -66,6 +66,8 @@ public class SeatAvailabiltyButtonListener implements ActionListener {
 			new ErrorDialogBox(tab.getParent(), e.getMessage()).show();
 		} catch (EmptyArgumentsException e) {
 			new ErrorDialogBox(tab.getParent(), e.getMessage()).show();
+		} catch (NullPointerException e) {
+			new ErrorDialogBox(tab.getParent(), "Fatal error: Unable to read data from server");
 		}
 	}
 

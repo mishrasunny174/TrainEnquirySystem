@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,9 +34,9 @@ public class FairEnquiryTab {
 	private JLabel ageLabel;
 	private JTextField ageText;
 	private JLabel classLabel;
-	private JTextField classText;
+	private JComboBox<String> classText;
 	private JLabel quotaLabel;
-	private JTextField quotaText;
+	private JComboBox<String> quotaText;
 	private JButton statusButton;
 
 	public FairEnquiryTab(JFrame parent, String apikey) {
@@ -50,10 +53,10 @@ public class FairEnquiryTab {
 		dateText = new JTextField(10);
 		ageLabel = new JLabel("Age : ");
 		ageText = new JTextField(10);
-		classLabel = new JLabel("Class Code : ");
-		classText = new JTextField(10);
+		classLabel = new JLabel("Journey Class : ");
+		classText = new JComboBox<>();
 		quotaLabel = new JLabel("Quota : ");
-		quotaText = new JTextField(10);
+		quotaText = new JComboBox<>();
 		statusButton = new JButton("Show Status");
 
 		panel.setLayout(new GridBagLayout());
@@ -174,6 +177,7 @@ public class FairEnquiryTab {
 		// date input configuration
 		dateText.setFont(fairfont);
 		panelGbc.gridx++;
+		dateText.setText("DD-MM-YYYY");
 		panel.add(dateText, panelGbc);
 
 		// separator horizontal
@@ -234,6 +238,10 @@ public class FairEnquiryTab {
 		// class input configuration
 		classText.setFont(fairfont);
 		panelGbc.gridx++;
+		String[] classes = {"1A","2A","3A","FC","CC","2L","2S"};
+		for(String clas : classes) {
+			classText.addItem(clas);
+		}
 		panel.add(classText, panelGbc);
 
 		// separator horizontal
@@ -264,6 +272,10 @@ public class FairEnquiryTab {
 		// quota input configuration
 		quotaText.setFont(fairfont);
 		panelGbc.gridx++;
+		String[] qoutas = {"GN","LD","HO","DF","PH","FT","DP","TQ","PT","SS","HP","RE","GNRS","OS","PS","RC(RAC)","RS","YU","LB"};
+		for(String quota : qoutas) {
+			quotaText.addItem(quota);
+		}
 		panel.add(quotaText, panelGbc);
 
 		// separator horizontal
@@ -301,6 +313,14 @@ public class FairEnquiryTab {
 
 		// adding status button listener
 		statusButton.addActionListener(new FairEnquiryButtonListener(this));
+		
+		//adding dateText mouse listener
+		dateText.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				dateText.selectAll();
+			}
+		});
 
 	}
 
@@ -337,11 +357,11 @@ public class FairEnquiryTab {
 	}
 
 	public String getQuota() {
-		return quotaText.getText();
+		return quotaText.getItemAt(quotaText.getSelectedIndex());
 	}
 
 	public String getClassCode() {
-		return classText.getText();
+		return classText.getItemAt(classText.getSelectedIndex());
 	}
 
 	public String getDate() {

@@ -29,6 +29,7 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 			switch (data.getResponse_code()) {
 			case 200:
 				tab.setData(data);
+				tab.setNameLabel(data.getTrains()[0].getFrom_station().getName()+" to "+data.getTrains()[0].getTo_station().getName());
 				Vector<String> trains = new Vector<>();
 				for (Train train : data.getTrains()) {
 					trains.addElement(train.getName());
@@ -71,6 +72,8 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 			new ErrorDialogBox(tab.getParent(), e.getMessage()).show();
 		} catch (EmptyArgumentsException e) {
 			new ErrorDialogBox(tab.getParent(), e.getMessage()).show();
+		} catch (NullPointerException e) {
+			new ErrorDialogBox(tab.getParent(), "Fatal error: Unable to read data from server");
 		}
 
 	}
