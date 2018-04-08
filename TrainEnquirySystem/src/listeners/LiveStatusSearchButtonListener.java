@@ -10,6 +10,7 @@ import data.LiveRunningData;
 import data.TrainRoute;
 import gui.ErrorDialogBox;
 import gui.RunningStatusTab;
+import gui.SearchingDialog;
 
 public class LiveStatusSearchButtonListener implements ActionListener {
 
@@ -22,7 +23,10 @@ public class LiveStatusSearchButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		try {
 			LiveRunningData data = null;
+			SearchingDialog dial = new SearchingDialog(tab.getParent());
+			dial.show();
 			data = LiveRunningStatus.getLiveRunningStatus(tab.getTrain(), tab.getDate(), tab.getApiKey());
+			dial.hide();
 			tab.setLiveRunningStatusData(data);
 			switch(data.getResponse_code()) {
 			case 200:

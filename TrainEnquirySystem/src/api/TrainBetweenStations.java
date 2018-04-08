@@ -14,7 +14,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import data.TrainBetweenStationsData;
 
 public class TrainBetweenStations {
-	public static TrainBetweenStationsData getTrainsBetweenStations(String from,String to,String date, String apiKey) throws UnableToConnectToServerException {
+	public static TrainBetweenStationsData getTrainsBetweenStations(String from, String to, String date, String apiKey)
+			throws UnableToConnectToServerException, EmptyArgumentsException {
+		if(from.equals("")||to.equals("")||date.equals(""))
+			throw new EmptyArgumentsException("Input fields are empty");
 		String urlString = "https://api.railwayapi.com/v2/between/source/"+from+"/dest/"+to+"/date/"+date+"/apikey/"+apiKey+"/";
 		StringBuffer response = new StringBuffer();
 		TrainBetweenStationsData data = null;

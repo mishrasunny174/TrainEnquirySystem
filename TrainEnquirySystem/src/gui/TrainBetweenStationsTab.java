@@ -13,6 +13,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import data.TrainBetweenStationsData;
+import listeners.TrainBetweenStationStatusButtonListener;
+
 public class TrainBetweenStationsTab {
 
 	private JFrame parent = null;
@@ -27,10 +30,11 @@ public class TrainBetweenStationsTab {
 	private JButton statusButton=null;
 	private JList<String> trainList = null;
 	private JLabel nameLabel=null;
+	private TrainBetweenStationsData data;
 
 	public TrainBetweenStationsTab(JFrame parent, String apikey) {
-		this.setParent(parent);
-		this.setApikey(apikey);
+		this.parent=parent;
+		this.apikey=apikey;
 		panel = new JPanel();
 		trainList = new JList<>();
 		this.apikey=apikey;
@@ -40,8 +44,8 @@ public class TrainBetweenStationsTab {
 		destText=new JTextField(10);
 		dateLabel=new JLabel("Date : ");
 		dateText=new JTextField(10);
-		statusButton=new JButton("Show Status");
-		nameLabel=new JLabel("  Train Between Stations");
+		statusButton=new JButton("Search");
+		nameLabel=new JLabel("Train Between Stations");
 		
 		
 		panel.setLayout(new GridBagLayout());
@@ -130,6 +134,7 @@ public class TrainBetweenStationsTab {
 		panelGbc.gridy=0;
 		statusButton.setFont(panelFont);
 		panel.add(statusButton,panelGbc);
+		statusButton.addActionListener(new TrainBetweenStationStatusButtonListener(this));
 		
 		
 		// adding horizontal separator
@@ -170,6 +175,9 @@ public class TrainBetweenStationsTab {
 		panelGbc.weighty=0.10;
 		panelGbc.weightx=0;
 		panelGbc.fill=GridBagConstraints.BOTH;
+		String[] dataList = {"Please Search For Trains"};
+		trainList.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+ 		trainList.setListData(dataList);
 		panel.add(trainList,panelGbc);
 		
 	}
@@ -182,15 +190,33 @@ public class TrainBetweenStationsTab {
 		return parent;
 	}
 
-	public void setParent(JFrame parent) {
-		this.parent = parent;
-	}
 
 	public String getApikey() {
 		return apikey;
 	}
-
-	public void setApikey(String apikey) {
-		this.apikey = apikey;
+	
+	public String getSource() {
+		return sourceText.getText();
 	}
+	
+	public String getDestination() {
+		return destText.getText();
+	}
+	
+	public String getDate() {
+		return dateText.getText();
+	}
+	
+	public JList<String> getTrainList(){
+		return trainList;
+	}
+
+	public TrainBetweenStationsData getData() {
+		return data;
+	}
+
+	public void setData(TrainBetweenStationsData data) {
+		this.data = data;
+	}
+	
 }
