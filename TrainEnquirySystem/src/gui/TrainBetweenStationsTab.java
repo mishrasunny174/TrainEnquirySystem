@@ -10,12 +10,28 @@ public class TrainBetweenStationsTab {
 	private String apikey = null;
 
 	public TrainBetweenStationsTab(JFrame parent, String apikey) {
-		this.parent = parent;
-		this.apikey = apikey;
+		this.setParent(parent);
+		this.setApikey(apikey);
 		panel = new JPanel();
 	}
 
 	public JPanel getPanel() {
 		return panel;
+	}
+
+	public JFrame getParent() {
+		return parent;
+	}
+
+	public void setParent(JFrame parent) {
+		this.parent = parent;
+	}
+
+	public String getApikey() {
+		return apikey;
+	}
+
+	public void setApikey(String apikey) {
+		this.apikey = apikey;
 	}
 }

@@ -36,7 +36,7 @@ public class RunningStatusTab {
 	private JFrame parent;
 	
 	public RunningStatusTab(JFrame parent,String apikey) {
-		this.parent=parent;
+		this.setParent(parent);
 		this.apikey = apikey;
 		panel = new JPanel();
 		trainPanel = new JPanel();
@@ -87,7 +87,7 @@ public class RunningStatusTab {
 		searchPanelGbc.gridwidth = 1;
 		searchPanelGbc.weightx = 1;
 		search = new JButton("Search");
-		search.addActionListener(new LiveStatusSearchButtonListener(parent,this));
+		search.addActionListener(new LiveStatusSearchButtonListener(this));
 		search.setFont(trainfont);
 		searchPanel.add(search, searchPanelGbc);
 
@@ -136,7 +136,7 @@ public class RunningStatusTab {
 		panelGbc.weighty = 0.10;
 		panelGbc.gridwidth = 1;
 		panelGbc.fill = 0;
-		statusButton.addActionListener(new ShowStatusButtonListenerRunningStatus(parent,this));
+		statusButton.addActionListener(new ShowStatusButtonListenerRunningStatus(this));
 		panel.add(statusButton, panelGbc);
 
 	}
@@ -171,6 +171,14 @@ public class RunningStatusTab {
 
 	public void activateGetStatusButton() {
 		statusButton.setEnabled(true);	
+	}
+
+	public JFrame getParent() {
+		return parent;
+	}
+
+	public void setParent(JFrame parent) {
+		this.parent = parent;
 	}
 
 }
