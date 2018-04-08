@@ -14,7 +14,11 @@ import org.codehaus.jackson.map.ObjectMapper;
 import data.LiveRunningData;
 
 public class LiveRunningStatus {
-	public static LiveRunningData getLiveRunningStatus(String trainNumber, String date, String apiKey) throws UnableToConnectToServerException {
+	public static LiveRunningData getLiveRunningStatus(String trainNumber, String date, String apiKey) throws UnableToConnectToServerException, EmptyArgumentsException {
+		
+		if(trainNumber.equals("")||date.equals(""))
+			throw new EmptyArgumentsException("Input fields are empty");
+		
 		String urlString = "https://api.railwayapi.com/v2/live/train/" + trainNumber + "/date/" + date + "/apikey/"
 				+ apiKey + "/";
 		StringBuffer response = new StringBuffer();
@@ -41,10 +45,13 @@ public class LiveRunningStatus {
 			data = mapper.readValue(response.toString(), LiveRunningData.class);
 		} catch (JsonParseException e) {
 			System.out.println("[Debug] unable to parse response");
+			throw new UnableToConnectToServerException("Unable to connect to server");
 		} catch (JsonMappingException e) {
 			System.out.println("[Debug] "+e.getMessage());
+			throw new UnableToConnectToServerException("Unable to connect to server");
 		} catch (IOException e) {
 			System.out.println("[Debug] " + e.getMessage());
+			throw new UnableToConnectToServerException("Unable to connect to server");
 		}
 		return data;
 	}

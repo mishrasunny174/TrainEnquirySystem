@@ -1,33 +1,42 @@
 package gui;
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ErrorDialogBox {
 	private JDialog errorDialog = null;
-	private JLabel errorLabel = null;
+	private JLabel errorMessageArea = null;
 	private JPanel labelPanel = null;
 	private JButton ok = null;
 	private JPanel buttonPanel = null;
 	
-	public ErrorDialogBox(String message) {
+	public ErrorDialogBox(JFrame parent,String message) {
 		//configuring errorDialog
-		errorDialog = new JDialog();
+		errorDialog = new JDialog(parent);
+		errorDialog.setBackground(Color.WHITE);
+		errorMessageArea = new JLabel(message);
+		errorMessageArea.setBackground(Color.WHITE);
+		labelPanel = new JPanel();
+		buttonPanel = new JPanel();
+		labelPanel.setBackground(Color.WHITE);
+		buttonPanel.setBackground(Color.WHITE);
 		errorDialog.setTitle("ERROR");
-		errorDialog.setSize(new Dimension(400, 400));
+		errorDialog.setSize(new Dimension(500, 150));
 		errorDialog.setLayout(new GridLayout(2, 1));
 		errorDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		//System.out.println(message);
 		
-		errorLabel = new JLabel(message);
-		errorLabel.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
-		labelPanel.add(errorLabel);
+		errorMessageArea.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
+		labelPanel.add(errorMessageArea);
 		errorDialog.add(labelPanel);
 		ok = new JButton("OK");
 		ok.addActionListener((ae) -> {
