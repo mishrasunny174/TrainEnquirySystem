@@ -15,7 +15,9 @@ import data.PNRStatusData;
 
 public class PNRStatus {
 
-	public static PNRStatusData getPNRStatus(String pnr, String apiKey) throws UnableToConnectToServerException {
+	public static PNRStatusData getPNRStatus(String pnr, String apiKey) throws UnableToConnectToServerException, EmptyArgumentsException {
+		if(pnr.equals(""))
+			throw new EmptyArgumentsException("Input fields are empty");
 		String urlString = "https://api.railwayapi.com/v2/pnr-status/pnr/"+pnr+"/apikey/"+apiKey+"/";
 		StringBuffer response = new StringBuffer();
 		PNRStatusData data = null;

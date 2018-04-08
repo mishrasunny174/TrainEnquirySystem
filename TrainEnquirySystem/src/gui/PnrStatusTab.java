@@ -12,6 +12,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import listeners.PNRStatusButtonListener;
+
 public class PnrStatusTab {
 
 	private JPanel panel = null;
@@ -40,16 +42,6 @@ public class PnrStatusTab {
 		pnrLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 35));
 		panel.add(pnrLabel, panelGbc);
 
-		/*// adding separator
-		panelGbc.weightx = 0;
-		panelGbc.gridx = 1;
-		panelGbc.gridy = 0;
-		panelGbc.fill = GridBagConstraints.VERTICAL;
-		panelGbc.gridheight = 1;
-		panel.add(new JSeparator(SwingConstants.VERTICAL), panelGbc);
-*/
-		// adding pnr no. textfield
-
 		panelGbc.gridx = 2;
 		panelGbc.gridy = 0;
 		panelGbc.gridheight = 1;
@@ -72,6 +64,7 @@ public class PnrStatusTab {
 		panelGbc.gridwidth = 1;
 		panelGbc.weightx = 0;
 		statusButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
+		statusButton.addActionListener(new PNRStatusButtonListener(this));
 		panel.add(statusButton, panelGbc);
 
 	}
@@ -94,6 +87,10 @@ public class PnrStatusTab {
 
 	public void setParent(JFrame parent) {
 		this.parent = parent;
+	}
+
+	public String getPnr() {
+		return pnrText.getText();
 	}
 
 }

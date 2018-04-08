@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,7 +17,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import data.TrainRoute;
+import data.PNRStatusData;
+import data.Passeneger;
 
 public class PnrStatusDialog {
 
@@ -40,7 +42,7 @@ public class PnrStatusDialog {
 	private JList<String> passengerList = null;
 	private JButton ok = null;
 
-	public PnrStatusDialog(JFrame parent) {
+	public PnrStatusDialog(JFrame parent, PNRStatusData data) {
 		pnrDialog = new JDialog(parent);
 		pnrDialog.setTitle("PNR Status");
 		pnrDialog.setSize(420, 300);
@@ -74,6 +76,9 @@ public class PnrStatusDialog {
 
 		// adding ok button
 		ok = new JButton("OK");
+		ok.addActionListener((ae)->{
+			pnrDialog.setVisible(false);
+		});
 		pnrGbc.gridy = 2;
 		pnrGbc.weighty = 0.10;
 		pnrGbc.fill = GridBagConstraints.HORIZONTAL;
@@ -226,26 +231,24 @@ public class PnrStatusDialog {
 		gbc.gridx = 0;
 		gbc.gridy = 13;
 		gbc.weightx = 0.25;
-	    gbc.fill = 0;
+		gbc.fill = 0;
 		gbc.gridwidth = 1;
-		passengerlistLabel = new JLabel("              Passengers List ");
-		passengerlistLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,15));
+		passengerlistLabel = new JLabel("Passengers Reservation Status");
+		passengerlistLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		panel.add(passengerlistLabel, gbc);
 		gbc.gridy = 14;
 		gbc.gridx = 0;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridwidth = 3;
 		panel.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
 
-		
-		
 		// passenger list label
-		gbc.gridx=0;
-		gbc.gridy=15;
-		gbc.weighty=1;
-		gbc.fill=GridBagConstraints.BOTH;
-		gbc.gridwidth=3;
-		gbc.gridheight=1;
+		gbc.gridx = 0;
+		gbc.gridy = 15;
+		gbc.weighty = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.gridwidth = 3;
+		gbc.gridheight = 1;
 		passengerList = new JList<>();
 		panel.add(passengerList, gbc);
 		gbc.gridy = 16;
@@ -253,6 +256,18 @@ public class PnrStatusDialog {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridwidth = 3;
 		panel.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
+
+		classArea.setText(data.getJourney_class().getCode());
+		passengerArea.setText(data.getTotal_passengers() + "");
+		sourceArea.setText(data.getFrom_station().getName());
+		destArea.setText(data.getTo_station().getName());
+		dateArea.setText(data.getDoj());
+		reservationArea.setText(data.getReservation_upto().getName());
+		Vector<String> passengers = new Vector<>();
+		for (Passeneger passeneger : data.getPassengers()) {
+			passengers.add(passeneger.getNo() + " : " + passeneger.getBooking_status());
+		}
+		passengerList.setListData(passengers);
 
 	}
 
