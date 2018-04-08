@@ -25,7 +25,7 @@ public class PnrStatusTab {
 		this.setParent(parent);
 		panel = new JPanel();
 		this.setApikey(apikey);
-		pnrLabel = new JLabel("PNR Number");
+		pnrLabel = new JLabel("Pnr Number : ");
 		pnrText = new JTextField(10);
 		statusButton = new JButton("Show Status");
 
@@ -34,26 +34,26 @@ public class PnrStatusTab {
 
 		// adding pnr no. label
 
-		panelGbc.gridx = 0;
+		panelGbc.gridx = 1;
 		panelGbc.gridy = 0;
-		panelGbc.weightx = 0.10;
+		panelGbc.weightx = 0;
 		pnrLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 35));
 		panel.add(pnrLabel, panelGbc);
 
-		// adding separator
+		/*// adding separator
 		panelGbc.weightx = 0;
 		panelGbc.gridx = 1;
 		panelGbc.gridy = 0;
 		panelGbc.fill = GridBagConstraints.VERTICAL;
 		panelGbc.gridheight = 1;
 		panel.add(new JSeparator(SwingConstants.VERTICAL), panelGbc);
-
+*/
 		// adding pnr no. textfield
 
 		panelGbc.gridx = 2;
 		panelGbc.gridy = 0;
 		panelGbc.gridheight = 1;
-		panelGbc.weightx = 0.10;
+		panelGbc.weightx = 0;
 		pnrText.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		panel.add(pnrText, panelGbc);
 
@@ -70,7 +70,7 @@ public class PnrStatusTab {
 		panelGbc.gridx = 4;
 		panelGbc.gridy = 0;
 		panelGbc.gridwidth = 1;
-		panelGbc.weightx = 0.10;
+		panelGbc.weightx = 0;
 		statusButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
 		panel.add(statusButton, panelGbc);
 

@@ -48,7 +48,6 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(new ImageIcon("res\\icon.png").getImage());
 		frame.setJMenuBar(new GUIMenuBar().getMenuBar());
-		
 		//configuring and adding components to head panel
 		headpanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
