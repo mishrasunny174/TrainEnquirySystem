@@ -66,16 +66,13 @@ public class LiveStatusSearchButtonListener implements ActionListener {
 						new ErrorDialogBox(tab.getParent(), "Invalid PNR.").show();
 						break;
 					case 230:
-						new ErrorDialogBox(tab.getParent(),
-								"Date chosen for the query is not valid for the chosen parameters.").show();
+						new ErrorDialogBox(tab.getParent(), "Invalid data in fields").show();
 						break;
 					case 404:
-						new ErrorDialogBox(tab.getParent(),
-								"Data couldn’t be loaded on our servers. No data available.").show();
+						new ErrorDialogBox(tab.getParent(), "unable to reach server").show();
 						break;
 					case 405:
-						new ErrorDialogBox(tab.getParent(),
-								"Data couldn’t be loaded on our servers. Request couldn’t go through.").show();
+						new ErrorDialogBox(tab.getParent(), "Unable to reach server").show();
 						break;
 					case 500:
 						new ErrorDialogBox(tab.getParent(), "Unauthorized API Key, Please change apikey from file menu")

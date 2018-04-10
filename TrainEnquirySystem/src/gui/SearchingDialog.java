@@ -1,10 +1,6 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;

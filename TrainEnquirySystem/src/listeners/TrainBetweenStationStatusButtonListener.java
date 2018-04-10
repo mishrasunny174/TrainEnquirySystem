@@ -56,6 +56,7 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 						}
 						tab.getTrainList().setListData(trains);
 						tab.getTrainList().addKeyListener(new TrainBetweenStationKeyListener(tab));
+						tab.getTrainList().addMouseListener(new TrainBetweenStationsMouseAdapter(tab));
 						break;
 					case 210:
 						new ErrorDialogBox(tab.getParent(), "Train doesn’t run on the date queried.").show();
