@@ -40,6 +40,7 @@ public class ChangeApiDialog {
 		GridBagConstraints gbc = new GridBagConstraints();
 		dialog.setSize(new Dimension(400, 300));
 		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		dialog.setLocation(508, 235);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weighty=0.20;

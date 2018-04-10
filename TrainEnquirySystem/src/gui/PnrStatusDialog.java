@@ -51,6 +51,7 @@ public class PnrStatusDialog {
 		pnrDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		pnrDialog.setLayout(new GridBagLayout());
 		pnrDialog.setBackground(Color.WHITE);
+		pnrDialog.setLocation(508, 235);
 
 		// configuring status
 		GridBagConstraints pnrGbc = new GridBagConstraints();
