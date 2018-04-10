@@ -72,13 +72,13 @@ public class GUI {
 		//configuring functionTabs and adding components to it
 		functionTabs.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
 		try {
-			functionTabs.addTab("Live train running status",new RunningStatusTab(frame,new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("Live train status",new RunningStatusTab(frame,new ApiKey().getApiKey()).getPanel());
 			functionTabs.addTab("Train between stations", new TrainBetweenStationsTab(frame,new ApiKey().getApiKey()).getPanel());
 			functionTabs.addTab("PNR status",new PnrStatusTab(frame,new ApiKey().getApiKey()).getPanel());
 			functionTabs.addTab("Seat availabilty", new SeatAvailabiltyTab(frame, new ApiKey().getApiKey()).getPanel());
-			functionTabs.addTab("Train fair enquiry", new FairEnquiryTab(frame, new ApiKey().getApiKey()).getPanel());
+			functionTabs.addTab("Fair enquiry", new FairEnquiryTab(frame, new ApiKey().getApiKey()).getPanel());
 		} catch (IOException e) {
-			System.err.println("[Debug] unable to read api file");
+			new ErrorDialogBox(frame, "[Fatal ERROR] appdata folder not found").show();
 		}
 		
 		//configuring main panel and adding components to it
