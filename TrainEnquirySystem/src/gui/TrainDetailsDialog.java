@@ -42,6 +42,7 @@ public class TrainDetailsDialog {
 	
 	public TrainDetailsDialog(JFrame parent,Train train) {
 		this.dialogMain = new JDialog(parent,"Train Details");
+		dialogMain.setLocation(508, 235);
 		this.train=train;
 		dialog = new JPanel();
 		name = new JLabel("Name");

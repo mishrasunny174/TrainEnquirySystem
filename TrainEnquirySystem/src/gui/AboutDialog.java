@@ -31,7 +31,7 @@ public class AboutDialog {
 
 		aboutDialog.setSize(420, 300);
 		aboutDialog.setTitle("About us");
-		// aboutDialog.setResizable(false);
+		aboutDialog.setLocation(508, 235);
 		aboutDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		aboutDialog.setLayout(new GridBagLayout());
 		aboutDialog.setBackground(Color.WHITE);

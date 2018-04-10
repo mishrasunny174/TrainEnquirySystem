@@ -38,8 +38,8 @@ public class GUI {
 	}
 
 	public void init() {
-		
-		//setting frame properties
+
+		// setting frame properties
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(new Dimension(1366, 768));
 		frame.setMinimumSize(new Dimension(1366, 768));
@@ -48,7 +48,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(new ImageIcon("appdata\\icon.png").getImage());
 		frame.setJMenuBar(new GUIMenuBar(frame).getMenuBar());
-		//configuring and adding components to head panel
+		// configuring and adding components to head panel
 		headpanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
@@ -68,33 +68,37 @@ public class GUI {
 		headpanel.add(imageRail, gbc);
 		headpanel.setBackground(Color.WHITE);
 		headpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		//configuring functionTabs and adding components to it
-		functionTabs.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
+
+		// configuring functionTabs and adding components to it
+		functionTabs.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
 		try {
-			functionTabs.addTab("Live train running status",new RunningStatusTab(frame,new ApiKey().getApiKey()).getPanel());
-			functionTabs.addTab("Train between stations", new TrainBetweenStationsTab(frame,new ApiKey().getApiKey()).getPanel());
-			functionTabs.addTab("PNR status",new PnrStatusTab(frame,new ApiKey().getApiKey()).getPanel());
-			functionTabs.addTab("Seat availabilty", new SeatAvailabiltyTab(frame, new ApiKey().getApiKey()).getPanel());
-			functionTabs.addTab("Train fair enquiry", new FairEnquiryTab(frame, new ApiKey().getApiKey()).getPanel());
+			String apikey = new ApiKey().getApiKey();
+			// adding tabs to main GUI
+			functionTabs.addTab("Live train status", new RunningStatusTab(frame, apikey).getPanel());
+			functionTabs.addTab("Train between stations", new TrainBetweenStationsTab(frame, apikey).getPanel());
+			functionTabs.addTab("PNR status", new PnrStatusTab(frame, apikey).getPanel());
+			functionTabs.addTab("Seat availabilty", new SeatAvailabiltyTab(frame, apikey).getPanel());
+			functionTabs.addTab("Fair enquiry", new FairEnquiryTab(frame, apikey).getPanel());
+			functionTabs.addTab("Search Trains", new TrainSearchTab(frame, apikey).getPanel());
+			functionTabs.addTab("Station Search", new StationSearchTab(frame, apikey).getPanel());
 		} catch (IOException e) {
-			System.err.println("[Debug] unable to read api file");
+			new FatalErrorDialogBox(frame, "[Fatal ERROR] appdata folder not found").show();
 		}
-		
-		//configuring main panel and adding components to it
+
+		// configuring main panel and adding components to it
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints panelGbc = new GridBagConstraints();
 		panelGbc.gridx = 0;
 		panelGbc.gridy = 0;
-		panelGbc.weighty=0.10;
-		panel.add(headpanel,panelGbc);
+		panelGbc.weighty = 0.10;
+		panel.add(headpanel, panelGbc);
 		panelGbc.fill = GridBagConstraints.BOTH;
-		panelGbc.gridx=0;
-		panelGbc.gridy=1;
-		panelGbc.weighty=0.90;
-		panel.add(functionTabs,panelGbc);
-		
-		//configuring and adding main panel to frame
+		panelGbc.gridx = 0;
+		panelGbc.gridy = 1;
+		panelGbc.weighty = 0.90;
+		panel.add(functionTabs, panelGbc);
+
+		// configuring and adding main panel to frame
 		panel.setBackground(Color.WHITE);
 		frame.add(panel);
 	}

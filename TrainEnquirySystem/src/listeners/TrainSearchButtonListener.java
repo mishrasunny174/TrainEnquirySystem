@@ -2,40 +2,42 @@ package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.SwingWorker;
 
 import api.EmptyArgumentsException;
-import api.PNRStatus;
-import data.PNRStatusData;
+import api.TrainSearch;
+import data.Train;
+import data.TrainSearchData;
 import gui.ErrorDialogBox;
-import gui.PnrStatusDialog;
-import gui.PnrStatusTab;
 import gui.SearchingDialog;
+import gui.TrainSearchTab;
 
-public class PNRStatusButtonListener implements ActionListener {
+public class TrainSearchButtonListener implements ActionListener {
 
-	private PnrStatusTab tab;
-	private PNRStatusData data;
 	private SwingWorker<Void, Void> downloader;
-	public PNRStatusButtonListener(PnrStatusTab tab) {
-		this.tab=tab;
+	private TrainSearchData data;
+	private TrainSearchTab tab;
+
+	public TrainSearchButtonListener(TrainSearchTab tab) {
+		this.tab = tab;
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent ae) {
-		SearchingDialog searching = new SearchingDialog(tab.getParent());
+	public void actionPerformed(ActionEvent e) {
+		SearchingDialog searching = new SearchingDialog(null);
 		searching.show();
 		downloader = new SwingWorker<Void, Void>() {
 
-			private boolean isInputFieldEmpty = false;
-			
+			private boolean isInputFieldsEmpty = false;
+
 			@Override
 			protected Void doInBackground() throws Exception {
 				try {
-					data = PNRStatus.getPNRStatus(tab.getPnr(), tab.getApikey());
+					data = TrainSearch.getTrains(tab.getTrainName(), tab.getApikey());
 				} catch (EmptyArgumentsException e) {
-					isInputFieldEmpty = true;
+					isInputFieldsEmpty = true;
 				}
 				return null;
 			}
@@ -46,7 +48,11 @@ public class PNRStatusButtonListener implements ActionListener {
 				if (data != null) {
 					switch (data.getResponse_code()) {
 					case 200:
-						new PnrStatusDialog(tab.getParent(), data).show();
+						Vector<String> datalist = new Vector<>();
+						for (Train train : data.getTrains()) {
+							datalist.add(train.getName() + " : " + train.getNumber());
+						}
+						tab.getTrainsList().setListData(datalist);
 						break;
 					case 210:
 						new ErrorDialogBox(tab.getParent(), "Train doesn’t run on the date queried.").show();
@@ -80,7 +86,7 @@ public class PNRStatusButtonListener implements ActionListener {
 					case 502:
 						new ErrorDialogBox(tab.getParent(), "Invalid arguments passed.").show();
 					}
-				} else if(isInputFieldEmpty) {
+				} else if (isInputFieldsEmpty) {
 					new ErrorDialogBox(tab.getParent(), "Input fields are empty").show();
 				} else {
 					new ErrorDialogBox(tab.getParent(), "Unable to connect to server").show();

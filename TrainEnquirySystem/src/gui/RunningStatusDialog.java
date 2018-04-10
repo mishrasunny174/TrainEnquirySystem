@@ -47,6 +47,7 @@ public class RunningStatusDialog {
 		stationDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		stationDialog.setLayout(new GridBagLayout());
 		stationDialog.setBackground(Color.WHITE);
+		stationDialog.setLocation(508, 235);
 
 		// configuring status
 		GridBagConstraints stationPanelGbc = new GridBagConstraints();

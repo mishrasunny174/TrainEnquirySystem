@@ -1,6 +1,5 @@
 package gui;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,15 +11,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ErrorDialogBox {
+public class FatalErrorDialogBox {
+
 	private JDialog errorDialog = null;
 	private JLabel errorMessageArea = null;
 	private JPanel labelPanel = null;
 	private JButton ok = null;
 	private JPanel buttonPanel = null;
-	
-	public ErrorDialogBox(JFrame parent,String message) {
-		//configuring errorDialog
+
+	public FatalErrorDialogBox(JFrame parent, String message) {
+		// configuring errorDialog
+		parent.setVisible(false);
 		errorDialog = new JDialog(parent);
 		errorDialog.setBackground(Color.WHITE);
 		errorDialog.setLocation(508, 235);
@@ -34,20 +35,20 @@ public class ErrorDialogBox {
 		errorDialog.setSize(new Dimension(500, 150));
 		errorDialog.setLayout(new GridLayout(2, 1));
 		errorDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
-		//System.out.println(message);
-		
-		errorMessageArea.setFont(new Font(Font.MONOSPACED,Font.BOLD,20));
+		errorMessageArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
 		labelPanel.add(errorMessageArea);
 		errorDialog.add(labelPanel);
 		ok = new JButton("OK");
 		ok.addActionListener((ae) -> {
-			errorDialog.setVisible(false);
+			System.exit(-1);
 		});
 		buttonPanel.add(ok);
 		errorDialog.add(buttonPanel);
 	}
-	
+
 	public void show() {
-		errorDialog.setVisible(true);
+		// TODO Auto-generated method stub
+
 	}
+
 }

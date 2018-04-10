@@ -47,6 +47,7 @@ public class SeatAvailabiltyDialog {
 		seatDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		seatDialog.setLayout(new GridBagLayout());
 		seatDialog.setBackground(Color.WHITE);
+		seatDialog.setLocation(508, 235);
 
 		// configuring status
 		GridBagConstraints seatGbc = new GridBagConstraints();

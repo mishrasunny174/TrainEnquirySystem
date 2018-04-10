@@ -40,7 +40,7 @@ public class GUIMenuBar {
 		setApiKey.addActionListener((ae)->{
 			new ChangeApiDialog(frame).show();
 		});
-		aboutUs = new JMenuItem("About Us");
+		aboutUs = new JMenuItem("About us");
 		aboutUs.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
 		help.add(aboutApi);
 		help.add(aboutUs);

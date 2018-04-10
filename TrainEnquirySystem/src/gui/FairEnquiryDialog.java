@@ -47,6 +47,7 @@ public class FairEnquiryDialog {
 		fareDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		fareDialog.setLayout(new GridBagLayout());
 		fareDialog.setBackground(Color.WHITE);
+		fareDialog.setLocation(508, 235);
 
 		// configuring status
 		GridBagConstraints seatGbc = new GridBagConstraints();
