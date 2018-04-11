@@ -23,6 +23,7 @@ public class AboutApiDialog {
 		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		dialog.setLayout(new GridBagLayout());
 		dialog.setLocation(508, 235);
+		dialog.setAlwaysOnTop(true);
 		text = new JTextArea(5, 30);
 		textPanel = new JScrollPane(text);
 		ok = new JButton("OK");

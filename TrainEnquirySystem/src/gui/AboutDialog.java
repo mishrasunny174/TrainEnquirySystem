@@ -28,7 +28,6 @@ public class AboutDialog {
 
 		aboutDialog = new JDialog(frame);
 		headerPanel = new JPanel();
-
 		aboutDialog.setSize(420, 300);
 		aboutDialog.setTitle("About us");
 		aboutDialog.setLocation(508, 235);
@@ -47,6 +46,7 @@ public class AboutDialog {
 		projectLabel.setForeground(Color.RED);
 		headerPanel.add(projectLabel);
 		aboutDialog.add(headerPanel, panelGbc);
+		aboutDialog.setAlwaysOnTop(true);
 		aboutDialog.setBackground(Color.WHITE);
 
 		// adding ok button

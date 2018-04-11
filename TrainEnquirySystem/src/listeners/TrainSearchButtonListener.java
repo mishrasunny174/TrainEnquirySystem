@@ -49,6 +49,8 @@ public class TrainSearchButtonListener implements ActionListener {
 					switch (data.getResponse_code()) {
 					case 200:
 						Vector<String> datalist = new Vector<>();
+						if( data.getTrains().length == 0)
+							datalist.add("0 Results for this query");
 						for (Train train : data.getTrains()) {
 							datalist.add(train.getName() + " : " + train.getNumber());
 						}
@@ -70,7 +72,7 @@ public class TrainSearchButtonListener implements ActionListener {
 						new ErrorDialogBox(tab.getParent(), "Invalid data in fields").show();
 						break;
 					case 404:
-						new ErrorDialogBox(tab.getParent(), "unable to reach server").show();
+						new ErrorDialogBox(tab.getParent(), "Data is not avaialable for this query").show();
 						break;
 					case 405:
 						new ErrorDialogBox(tab.getParent(), "Unable to reach server").show();

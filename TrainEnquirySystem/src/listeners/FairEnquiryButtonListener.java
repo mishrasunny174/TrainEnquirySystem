@@ -66,7 +66,7 @@ public class FairEnquiryButtonListener implements ActionListener {
 						new ErrorDialogBox(tab.getParent(), "Invalid data in fields").show();
 						break;
 					case 404:
-						new ErrorDialogBox(tab.getParent(), "unable to reach server").show();
+						new ErrorDialogBox(tab.getParent(), "Data is not avaialable for this query").show();
 						break;
 					case 405:
 						new ErrorDialogBox(tab.getParent(), "Unable to reach server").show();

@@ -47,8 +47,7 @@ public class FatalErrorDialogBox {
 	}
 
 	public void show() {
-		// TODO Auto-generated method stub
-
+		errorDialog.setVisible(true);
 	}
 
 }
