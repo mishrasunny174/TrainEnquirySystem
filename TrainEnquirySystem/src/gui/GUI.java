@@ -70,15 +70,15 @@ public class GUI {
 		headpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 		// configuring functionTabs and adding components to it
-		functionTabs.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
+		functionTabs.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 23));
 		try {
 			String apikey = new ApiKey().getApiKey();
 			// adding tabs to main GUI
-			functionTabs.addTab("Live train status", new RunningStatusTab(frame, apikey).getPanel());
-			functionTabs.addTab("Train between stations", new TrainBetweenStationsTab(frame, apikey).getPanel());
-			functionTabs.addTab("PNR status", new PnrStatusTab(frame, apikey).getPanel());
-			functionTabs.addTab("Seat availabilty", new SeatAvailabiltyTab(frame, apikey).getPanel());
-			functionTabs.addTab("Fair enquiry", new FairEnquiryTab(frame, apikey).getPanel());
+			functionTabs.addTab("Live train status ", new RunningStatusTab(frame, apikey).getPanel());
+			functionTabs.addTab("Train between stations ", new TrainBetweenStationsTab(frame, apikey).getPanel());
+			functionTabs.addTab("PNR status ", new PnrStatusTab(frame, apikey).getPanel());
+			functionTabs.addTab("Seat availabilty ", new SeatAvailabiltyTab(frame, apikey).getPanel());
+			functionTabs.addTab("Fair enquiry ", new FairEnquiryTab(frame, apikey).getPanel());
 			functionTabs.addTab("Search Trains", new TrainSearchTab(frame, apikey).getPanel());
 			functionTabs.addTab("Station Search", new StationSearchTab(frame, apikey).getPanel());
 		} catch (IOException e) {
