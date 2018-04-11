@@ -32,6 +32,7 @@ public class ChangedSuccesfullyDialog {
 	public void show() {
 		dialog.setSize(new Dimension(400, 300));
 		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		dialog.setAlwaysOnTop(true);
 		changedSuccesfully.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
 		restartApp.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
 		changedPanel.add(changedSuccesfully);

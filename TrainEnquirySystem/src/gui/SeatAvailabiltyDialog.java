@@ -48,6 +48,7 @@ public class SeatAvailabiltyDialog {
 		seatDialog.setLayout(new GridBagLayout());
 		seatDialog.setBackground(Color.WHITE);
 		seatDialog.setLocation(508, 235);
+		seatDialog.setAlwaysOnTop(true);
 
 		// configuring status
 		GridBagConstraints seatGbc = new GridBagConstraints();

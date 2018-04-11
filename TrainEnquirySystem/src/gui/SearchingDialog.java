@@ -16,6 +16,7 @@ public class SearchingDialog {
 		dialog.setSize(new Dimension(350, 250));
 		dialog.add(new JLabel(new ImageIcon("appdata\\search.gif")));
 		dialog.setLocation(508, 235);
+		dialog.setAlwaysOnTop(true);
 	}
 	
 	public void show() {

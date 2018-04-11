@@ -46,6 +46,7 @@ public class RunningStatusDialog {
 		stationDialog.setSize(420, 300);
 		stationDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		stationDialog.setLayout(new GridBagLayout());
+		stationDialog.setAlwaysOnTop(true);
 		stationDialog.setBackground(Color.WHITE);
 		stationDialog.setLocation(508, 235);
 

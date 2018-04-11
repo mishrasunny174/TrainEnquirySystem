@@ -44,6 +44,7 @@ public class FairEnquiryDialog {
 		fareDialog = new JDialog(parent);
 		fareDialog.setTitle("fare enquiry");
 		fareDialog.setSize(420, 300);
+		fareDialog.setAlwaysOnTop(true);
 		fareDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		fareDialog.setLayout(new GridBagLayout());
 		fareDialog.setBackground(Color.WHITE);

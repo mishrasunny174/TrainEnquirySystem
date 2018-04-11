@@ -49,6 +49,7 @@ public class PnrStatusDialog {
 		pnrDialog.setTitle("PNR Status");
 		pnrDialog.setSize(420, 300);
 		pnrDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		pnrDialog.setAlwaysOnTop(true);
 		pnrDialog.setLayout(new GridBagLayout());
 		pnrDialog.setBackground(Color.WHITE);
 		pnrDialog.setLocation(508, 235);

@@ -25,6 +25,7 @@ public class FatalErrorDialogBox {
 		errorDialog = new JDialog(parent);
 		errorDialog.setBackground(Color.WHITE);
 		errorDialog.setLocation(508, 235);
+		errorDialog.setAlwaysOnTop(true);
 		errorMessageArea = new JLabel(message);
 		errorMessageArea.setBackground(Color.WHITE);
 		labelPanel = new JPanel();

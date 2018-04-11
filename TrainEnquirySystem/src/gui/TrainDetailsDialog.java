@@ -77,6 +77,7 @@ public class TrainDetailsDialog {
 		dialogMain.setSize(new Dimension(400,400));
 		dialogMain.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		dialogMain.add(dialog);
+		dialogMain.setAlwaysOnTop(true);
 		dialog.setLayout(new GridBagLayout());
 		dialog.setBackground(Color.WHITE);
 		dialog.setBorder(BorderFactory.createLineBorder(Color.GRAY));
