@@ -52,7 +52,7 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 						tab.setNameLabel(data.getTrains()[0].getFrom_station().getName()+" to "+data.getTrains()[0].getTo_station().getName());
 						Vector<String> trains = new Vector<>();
 						for (Train train : data.getTrains()) {
-							trains.addElement(train.getName());
+							trains.addElement(train.getNumber()+" : "+train.getName());
 						}
 						tab.getTrainList().setListData(trains);
 						tab.getTrainList().addKeyListener(new TrainBetweenStationKeyListener(tab));

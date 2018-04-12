@@ -52,7 +52,7 @@ public class TrainSearchButtonListener implements ActionListener {
 						if( data.getTrains().length == 0)
 							datalist.add("0 Results for this query");
 						for (Train train : data.getTrains()) {
-							datalist.add(train.getName() + " : " + train.getNumber());
+							datalist.add(train.getNumber()+" : " +train.getName());
 						}
 						tab.getTrainsList().setListData(datalist);
 						break;
