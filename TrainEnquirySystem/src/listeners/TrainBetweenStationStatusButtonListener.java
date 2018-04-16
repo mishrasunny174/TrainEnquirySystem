@@ -31,11 +31,12 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 		downloader = new SwingWorker<Void, Void>() {
 
 			private boolean isInputFieldEmpty = false;
-			
+
 			@Override
 			protected Void doInBackground() throws Exception {
 				try {
-					data = TrainBetweenStations.getTrainsBetweenStations(tab.getSource(), tab.getDestination(), tab.getDate(), tab.getApikey());
+					data = TrainBetweenStations.getTrainsBetweenStations(tab.getSource(), tab.getDestination(),
+							tab.getDate(), tab.getApikey());
 				} catch (EmptyArgumentsException e) {
 					isInputFieldEmpty = true;
 				}
@@ -49,10 +50,11 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 					switch (data.getResponse_code()) {
 					case 200:
 						tab.setData(data);
-						tab.setNameLabel(data.getTrains()[0].getFrom_station().getName()+" to "+data.getTrains()[0].getTo_station().getName());
+						tab.setNameLabel(data.getTrains()[0].getFrom_station().getName() + " to "
+								+ data.getTrains()[0].getTo_station().getName());
 						Vector<String> trains = new Vector<>();
 						for (Train train : data.getTrains()) {
-							trains.addElement(train.getNumber()+" : "+train.getName());
+							trains.addElement(train.getNumber() + " : " + train.getName());
 						}
 						tab.getTrainList().setListData(trains);
 						tab.getTrainList().addKeyListener(new TrainBetweenStationKeyListener(tab));
@@ -71,16 +73,13 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 						new ErrorDialogBox(tab.getParent(), "Invalid PNR.").show();
 						break;
 					case 230:
-						new ErrorDialogBox(tab.getParent(),
-								"Date chosen for the query is not valid for the chosen parameters.").show();
+						new ErrorDialogBox(tab.getParent(), "Invalid Input").show();
 						break;
 					case 404:
-						new ErrorDialogBox(tab.getParent(),
-								"Data couldn’t be loaded on our servers. No data available.").show();
+						new ErrorDialogBox(tab.getParent(), "Data is not avaialable for this query").show();
 						break;
 					case 405:
-						new ErrorDialogBox(tab.getParent(),
-								"Data couldn’t be loaded on our servers. Request couldn’t go through.").show();
+						new ErrorDialogBox(tab.getParent(), "Unable to reach server").show();
 						break;
 					case 500:
 						new ErrorDialogBox(tab.getParent(), "Unauthorized API Key, Please change apikey from file menu")
@@ -91,9 +90,9 @@ public class TrainBetweenStationStatusButtonListener implements ActionListener {
 								.show();
 						break;
 					case 502:
-						new ErrorDialogBox(tab.getParent(), "Invalid arguments passed.").show();
+						new ErrorDialogBox(tab.getParent(), "Invalid  Input.").show();
 					}
-				} else if(isInputFieldEmpty) {
+				} else if (isInputFieldEmpty) {
 					new ErrorDialogBox(tab.getParent(), "Input fields are empty").show();
 				} else {
 					new ErrorDialogBox(tab.getParent(), "Unable to connect to server").show();

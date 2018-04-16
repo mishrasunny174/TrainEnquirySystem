@@ -69,7 +69,7 @@ public class TrainSearchButtonListener implements ActionListener {
 						new ErrorDialogBox(tab.getParent(), "Invalid PNR.").show();
 						break;
 					case 230:
-						new ErrorDialogBox(tab.getParent(), "Invalid data in fields").show();
+						new ErrorDialogBox(tab.getParent(), "Invalid Input").show();
 						break;
 					case 404:
 						new ErrorDialogBox(tab.getParent(), "Data is not avaialable for this query").show();

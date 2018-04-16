@@ -63,7 +63,7 @@ public class FairEnquiryButtonListener implements ActionListener {
 						new ErrorDialogBox(tab.getParent(), "Invalid PNR.").show();
 						break;
 					case 230:
-						new ErrorDialogBox(tab.getParent(), "Invalid data in fields").show();
+						new ErrorDialogBox(tab.getParent(), "Invalid Input").show();
 						break;
 					case 404:
 						new ErrorDialogBox(tab.getParent(), "Data is not avaialable for this query").show();
@@ -80,7 +80,7 @@ public class FairEnquiryButtonListener implements ActionListener {
 								.show();
 						break;
 					case 502:
-						new ErrorDialogBox(tab.getParent(), "Invalid arguments passed.").show();
+						new ErrorDialogBox(tab.getParent(), "Invalid  Input.").show();
 					}
 				} else if (isInputFieldEmpty) {
 					new ErrorDialogBox(tab.getParent(), "Input fields are empty").show();
